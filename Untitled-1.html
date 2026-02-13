@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spesial buat bocil lucuku ❤️</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #ffebee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 90%;
+        position: relative;
+      }
+
+      h1 {
+        color: #d32f2f;
+        margin-bottom: 20px;
+      }
+      p {
+        color: #555;
+        font-size: 1.1rem;
+      }
+
+      .buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      #yesBtn {
+        background-color: #ff4081;
+        color: white;
+        font-weight: bold;
+      }
+      #noBtn {
+        background-color: #9e9e9e;
+        color: white;
+        position: relative;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .heart {
+        font-size: 50px;
+        color: #ff4081;
+        margin-bottom: 10px;
+      }
+
+      #success {
+        animation: fadeIn 1s;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="question" class="container">
+      <div class="heart">💝</div>
+      <h1>Mau jadi Valentine-ku?</h1>
+      <p>Bocil lucu kesayangan aku pasti mau kok,yakan? xixixi</p>
+      <div class="buttons">
+        <button id="yesBtn" onclick="showSuccess()">MAU BANGET!</button>
+        <button id="noBtn" onmouseover="moveButton()">Enggak deh</button>
+      </div>
+    </div>
+
+    <div id="success" class="container hidden">
+      <div class="heart">💖✨</div>
+      <h1>Tuhkan pasti mau 😍</h1>
+      <p>Pilihan yang menarik (karena gak ada pilihan lain dan kudu mau sih, hehe).</p>
+      <p><strong>I Love You More and always sweeaty</strong> ❤️</p>
+      <p style="font-size: 0.9rem; color: #888">Habis baca ini bilang "kak ony minta!!!" begitu ya</p>
+    </div>
+
+    <script>
+      function moveButton() {
+        const noBtn = document.getElementById("noBtn");
+        // Membuat koordinat acak agar tombol "No" berpindah tempat
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+      }
+
+      function showSuccess() {
+        document.getElementById("question").classList.add("hidden");
+        document.getElementById("success").classList.remove("hidden");
+        // Menambah efek konfeti sederhana lewat emoji
+        createHearts();
+      }
+
+      function createHearts() {
+        for (let i = 0; i < 20; i++) {
+          setTimeout(() => {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.style.position = "fixed";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            heart.style.fontSize = "20px";
+            heart.style.transition = "all 2s linear";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+              heart.style.top = "-10vh";
+              heart.style.opacity = "0";
+            }, 100);
+          }, i * 150);
+        }
+      }
+    </script>
+  </body>
+</html>
